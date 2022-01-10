@@ -1,13 +1,16 @@
 import styled from './App.module.scss';
 import NotFound from './pages/NotFound/NotFound';
+import Welcome from './pages/Welcome/Welcome';
 import { Route, Routes } from 'react-router';
 
 const App = () => {
 	return (
-		<Routes>
-			<Route path='/' element={<main className={styled.app}>Title!</main>} />
-			<Route path='*' element={<NotFound />} />
-		</Routes>
+		<div className={styled.app}>
+			<Routes>
+				<Route path='/' element={<Welcome />} />
+				<Route path='*' element={<NotFound />} />
+			</Routes>
+		</div>
 	);
 };
 

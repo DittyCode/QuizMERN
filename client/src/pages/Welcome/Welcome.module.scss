@@ -1,0 +1,6 @@
+@import './../../scss/abstracts/variables';
+
+.welcome {
+	height: 100vh;
+	background-color: map-get($colors, notFoundMain);
+}

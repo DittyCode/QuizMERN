@@ -1,0 +1,75 @@
+@import './../../scss/abstracts/variables';
+@import './../../scss/abstracts/mixins';
+
+.wrapper {
+	background-color: map-get($globalColors, globalWhite);
+}
+
+.nav {
+	@include flex-mother(row, center, space-between);
+	height: 15vh;
+	min-height: 100px;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 5em;
+	@include mq(440px) {
+		flex-direction: column;
+		padding: 0;
+	}
+	.logo {
+		@include mq(440px) {
+			@include sizing(100%, 100%);
+		}
+		&__anchor {
+			display: block;
+			width: 70%;
+			@include mq(440px) {
+				@include flex-mother();
+				width: 100%;
+			}
+		}
+		&__image {
+			width: 100%;
+			@include mq(440px) {
+				width: 30%;
+			}
+		}
+	}
+	&__list {
+		@include flex-mother(row, center, space-around);
+		@include sizing(30%, 100%);
+		min-width: 15em;
+		list-style-type: none;
+		@include mq(440px) {
+			width: 100%;
+			background-color: map-get($globalColors, globalWhite);
+		}
+	}
+	&__anchor {
+		text-decoration: none;
+	}
+	&__item {
+		position: relative;
+		z-index: 1002;
+		padding: 1em;
+		font-size: clamp(1.5rem, 5vh, 2rem);
+		color: map-get($globalColors, globalBlack);
+		transition: 0.3s;
+		&::after {
+			@include positioning(absolute, 50%, 0);
+			@include sizing(100%, 0);
+			content: '';
+			display: block;
+			z-index: -1;
+			transform: translateY(-50%);
+			transition: 0.3s;
+			background-color: map-get($colors, notFoundMain);
+		}
+		&:hover {
+			color: map-get($globalColors, globalWhite);
+		}
+		&:hover::after {
+			height: 100%;
+		}
+	}
+}
