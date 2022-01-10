@@ -1,0 +1,33 @@
+@mixin positioning($position: absolute, $top: 0, $left: 0) {
+	position: $position;
+	top: $top;
+	left: $left;
+}
+
+@mixin sizing($width: 0, $height: 0) {
+	width: $width;
+	height: $height;
+}
+
+@mixin flex-mother($dir: row, $align: center, $justify: center) {
+	display: flex;
+	flex-direction: $dir;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+@mixin mq($media) {
+	@media (max-width: $media) {
+		@content;
+	}
+}
+
+@mixin keyframes($name) {
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@mixin animate($animation, $duration, $method, $times) {
+	animation: $animation $duration $method $times;
+}

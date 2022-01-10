@@ -1,0 +1,90 @@
+@import './../../scss/abstracts/variables';
+@import './../../scss/abstracts/mixins';
+@import './../../scss/placeholders/btn';
+
+.notFound {
+	@include flex-mother(column);
+	height: 100vh;
+	&__image {
+		@include positioning();
+		@include sizing(100%, 100vh);
+		opacity: 0.06;
+	}
+	&__svg {
+		@include sizing(30%, 50vh);
+		z-index: 1000;
+		min-width: 25em;
+		min-height: 20em;
+	}
+	&__title {
+		font-size: clamp(2rem, 5vh, 4rem);
+		color: map-get($colors, notFoundMain);
+	}
+	&__letter {
+		display: inline-block;
+		@include animate(bounce, 2s, ease, 1);
+		&:nth-child(1) {
+			animation-delay: 0.1s;
+		}
+		&:nth-child(2) {
+			animation-delay: 0.2s;
+		}
+		&:nth-child(3) {
+			animation-delay: 0.3s;
+		}
+		&:nth-child(4) {
+			animation-delay: 0.4s;
+		}
+		&:nth-child(5) {
+			animation-delay: 0.5s;
+		}
+		&:nth-child(6) {
+			animation-delay: 0.6s;
+		}
+		&:nth-child(7) {
+			animation-delay: 0.7s;
+		}
+		&:nth-child(8) {
+			animation-delay: 0.8s;
+		}
+	}
+	&__btn {
+		@extend %button;
+		margin-top: 2em;
+		z-index: 1001;
+		background-color: map-get($colors, notFoundMain);
+		transition: 0.15s;
+		@include mq(576px) {
+			margin-top: 0;
+		}
+		&:hover {
+			color: map-get($colors, notFoundMain);
+			border: 2px solid map-get($colors, notFoundMain);
+			background-color: map-get($globalColors, globalWhite);
+		}
+	}
+}
+
+@keyframes bounce {
+	0% {
+		transform: scale(1, 1) translateY(0);
+	}
+	10% {
+		transform: scale(1.1, 0.9) translateY(0);
+	}
+	30% {
+		transform: scale(0.9, 1.1) translateY(-55px);
+	}
+	50% {
+		transform: scale(1.05, 0.95) translateY(0);
+	}
+	58% {
+		transform: scale(1, 1) translateY(-7px);
+	}
+	65% {
+		transform: scale(1, 1) translateY(0);
+	}
+	100% {
+		transform: scale(1, 1) translateY(0);
+	}
+}

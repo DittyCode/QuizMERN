@@ -1,0 +1,7 @@
+%button {
+	padding: 1.5em 2em;
+	border: none;
+	color: map-get($globalColors, globalWhite);
+	text-transform: uppercase;
+	cursor: pointer;
+}
