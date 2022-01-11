@@ -39,6 +39,7 @@
 		@include flex-mother(row, center, space-around);
 		@include sizing(30%, 100%);
 		min-width: 15em;
+		z-index: 1005;
 		list-style-type: none;
 		@include mq(440px) {
 			width: 100%;

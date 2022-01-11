@@ -1,5 +1,6 @@
 @import './../../scss/abstracts/variables';
 @import './../../scss/abstracts/mixins';
+@import './../../scss/placeholders/container';
 
 .welcome {
 	height: 100vh;
@@ -7,22 +8,10 @@
 	color: map-get($globalColors, globalWhite);
 	overflow: hidden;
 	.container {
-		@include positioning(relative);
-		@include sizing(100%, 85vh);
-		@include flex-mother(column);
-		&::after {
-			position: absolute;
-			@include sizing(100%, 150px);
-			content: '';
-			background-image: url('./../../assets/svg/wave.svg');
-			bottom: 0;
-		}
+		@extend %container;
 	}
 	&__title {
 		font-size: clamp(2rem, 5vh, 4rem);
-		&:hover {
-			color: red;
-		}
 	}
 	&__description {
 		font-size: clamp(1rem, 5vh, 2rem);
@@ -36,14 +25,4 @@
 	transform: translate(-50%, -50%);
 	border-radius: 50%;
 	border: 1em solid map-get($globalColors, globalWhite);
-	animation: hide 2s linear 1 forwards;
-}
-
-@keyframes hide {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
 }

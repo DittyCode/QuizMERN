@@ -1,0 +1,14 @@
+@import './../abstracts/mixins';
+
+%container {
+	@include positioning(relative);
+	@include sizing(100%, 85vh);
+	@include flex-mother(column);
+	&::after {
+		position: absolute;
+		@include sizing(100%, 150px);
+		content: '';
+		background-image: url('./../../assets/svg/wave.svg');
+		bottom: 0;
+	}
+}

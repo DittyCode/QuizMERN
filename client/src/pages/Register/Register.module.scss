@@ -1,0 +1,63 @@
+@import './../../scss/abstracts/variables';
+@import './../../scss/abstracts/mixins';
+@import './../../scss/placeholders/container';
+@import './../../scss/placeholders/btn';
+
+.container {
+	@extend %container;
+	background-color: map-get($colors, notFoundMain);
+}
+
+.form {
+	@include flex-mother(column, center, flex-start);
+	width: clamp(300px, 50%, 500px);
+	height: 50vh;
+	padding: 2em;
+	background-color: map-get($globalColors, globalWhite);
+	&__title {
+		font-size: clamp(1.5rem, 3vh, 2.5rem);
+	}
+	&__description {
+		margin-bottom: 3em;
+		@include mq(768px) {
+			margin-bottom: 2em;
+		}
+	}
+	&__item {
+		position: relative;
+		@include sizing(60%, 40px);
+		margin: 1.3em 0;
+		@include mq(768px) {
+			width: 80%;
+		}
+	}
+	&__btn {
+		@extend %button;
+		width: 60%;
+		background-color: map-get($colors, notFoundMain);
+		@include mq(768px) {
+			width: 80%;
+		}
+	}
+	&__input {
+		@include sizing(100%, 100%);
+		padding-left: 1em;
+	}
+	&__icon {
+		@include positioning(absolute, 50%, 85%);
+		transform: translateY(-50%);
+		font-size: 2rem;
+		cursor: pointer;
+		@include mq(678px) {
+			font-size: 1.7rem;
+		}
+	}
+	&__label {
+		@include positioning(absolute, 0, 5%);
+		z-index: 1;
+		padding: 0 1em;
+		background-color: map-get($globalColors, globalWhite);
+		border: 1px solid gray;
+		transform: translateY(-50%);
+	}
+}
