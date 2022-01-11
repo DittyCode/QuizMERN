@@ -2,13 +2,17 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
+import connectDB from './db/connect';
 import authRouter from './routes/authRoutes';
 
 dotenv.config({ path: './config/.env' });
 
+connectDB();
+
 const app = express();
 
 app.use(express.json());
+
 app.use(cors());
 
 const PROJECT_MODE = process.env.MODE_ENV;
