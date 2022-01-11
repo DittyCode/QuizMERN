@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
 import connectDB from './db/connect';
+import globalErrorHandler from './controllers/errorController';
+import notFound from './middlewares/notFound';
 import authRouter from './routes/authRoutes';
 
 dotenv.config({ path: './config/.env' });
@@ -24,6 +26,10 @@ if (PROJECT_MODE === 'development') {
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 app.use('/api/v1/users', authRouter);
+
+app.all('*', notFound);
+
+app.use(globalErrorHandler);
 
 app.listen(SERVER_PORT, () => {
 	console.log(
