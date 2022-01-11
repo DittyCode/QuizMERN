@@ -66,4 +66,26 @@ const login = asyncHandler(
 	}
 );
 
-export { signup, login };
+const protect = (req: Request, res: Response, next: NextFunction) => {
+	let token;
+	if (
+		req.headers.authorization &&
+		req.headers.authorization.startsWith('Bearer')
+	) {
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if (!token) {
+		return next(new appError('Log in to access!', 401));
+	}
+
+	const decodedToken = jwt.verify(token, process.env.JWT_SECRET as string);
+
+	if (!decodedToken) {
+		return next(new appError('Token issued', 400));
+	}
+
+	next();
+};
+
+export { signup, login, protect };

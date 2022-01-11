@@ -1,11 +1,13 @@
 import Navbar from '../../components/Navbar/Navbar';
 import styled from './Login.module.scss';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [inputType, setInputType] = useState('password');
 	const [nameInput, setNameInput] = useState('');
 	const [emailInput, setEmailInput] = useState('');
@@ -26,9 +28,12 @@ const Login = () => {
 					password: passwordInput,
 				}
 			);
-			const { data } = response.data;
 
-			console.log(data);
+			if (response.status === 200) {
+				navigate('/quiz', { replace: true });
+			}
+
+			console.log(response);
 		} catch (err) {
 			console.log(err);
 		}
