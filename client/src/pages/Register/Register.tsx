@@ -2,9 +2,12 @@ import Navbar from '../../components/Navbar/Navbar';
 import styled from './Register.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
+	const navigate = useNavigate();
 	const [inputType, setInputType] = useState('password');
 	const [nameInput, setNameInput] = useState('');
 	const [emailInput, setEmailInput] = useState('');
@@ -15,9 +18,27 @@ const Register = () => {
 		setInputType(inputType === 'password' ? 'text' : 'password');
 	};
 
-	const handleSubmit = (e: SyntheticEvent) => {
+	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		console.log(nameInput, emailInput, passwordInput, passwordConfirmInput);
+		try {
+			const signup = await axios.post(
+				'http://localhost:3000/api/v1/users/signup',
+				{
+					name: nameInput,
+					email: emailInput,
+					password: passwordInput,
+					passwordConfirm: passwordConfirmInput,
+				}
+			);
+
+			const { data } = signup.data;
+
+			localStorage.setItem('token', data.token);
+			navigate('/login', { replace: true });
+			console.log(data);
+		} catch (err: any) {
+			console.log(err.response.data);
+		}
 	};
 
 	return (

@@ -1,5 +1,6 @@
 import Navbar from '../../components/Navbar/Navbar';
 import styled from './Login.module.scss';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
@@ -14,9 +15,23 @@ const Login = () => {
 		setInputType(inputType === 'password' ? 'text' : 'password');
 	};
 
-	const handleSubmit = (e: SyntheticEvent) => {
+	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		console.log(nameInput, emailInput, passwordInput);
+		try {
+			const response = await axios.post(
+				'http://localhost:3000/api/v1/users/login',
+				{
+					name: nameInput,
+					email: emailInput,
+					password: passwordInput,
+				}
+			);
+			const { data } = response.data;
+
+			console.log(data);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
